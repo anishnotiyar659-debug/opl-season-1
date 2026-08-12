@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>O.P.L SEASON 1 | Player Registration Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #070d19;
+            --card-bg: #0d1b2a;
+            --accent-gold: #ffb703;
+            --accent-green: #2ec4b6;
+            --text-light: #f8f9fa;
+            --text-muted: #8d99ae;
+            --border-color: #1b263b;
+            --danger: #e63946;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.5;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(180deg, #0d1b2a 0%, #070d19 100%);
+            text-align: center;
+            padding: 30px 16px;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .badge-seats {
+            display: inline-block;
+            background-color: var(--danger);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .tournament-logo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-gold);
+            object-fit: cover;
+            background: #fff;
+        }
+
+        .tournament-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            line-height: 1;
+            margin-top: 10px;
+        }
+
+        .tournament-subtitle {
+            font-size: 0.9rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .quick-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 10px 4px;
+            border-radius: 8px;
+        }
+
+        .info-card.highlight {
+            border-color: var(--accent-gold);
+        }
+
+        .info-label {
+            display: block;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        .info-value {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: block;
+            width: 100%;
+            background: var(--accent-gold);
+            color: #000;
+            font-weight: 700;
+            text-align: center;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        /* Card Sections */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .rules-title {
+            font-size: 1.1rem;
+            color: var(--accent-green);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .rules-list {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .rules-list li {
+            margin-bottom: 8px;
+        }
+
+        .dev-credit {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        .dev-credit span {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* Forms */
+        .form-block {
+            margin-bottom: 25px;
+        }
+
+        .block-title {
+            font-size: 1.1rem;
+            color: var(--accent-green);
+            margin-bottom: 12px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            color: var(--text-muted);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            padding-top: 10px;
+        }
+
+        .radio-group label {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .qr-container {
+            text-align: center;
+            background: var(--bg-dark);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .qr-container img {
+            width: 180px;
+            height: 180px;
+            border-radius: 8px;
+        }
+
+        .upi-id {
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+
+        .upi-id span {
+            color: var(--accent-gold);
+            font-weight: 700;
+            display: block;
+        }
+
+        .gujarati-instruction {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-top: 10px;
+        }
+
+        .preview-container {
+            margin-top: 10px;
+        }
+
+        .preview-container img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Utilities */
+        .hidden { display: none !important; }
+
+        .alert-danger {
+            background: rgba(230, 57, 70, 0.2);
+            border: 1px solid var(--danger);
+            color: #ffb4a2;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 1000;
+        }
+
+        .modal-card {
+            background: var(--card-bg);
+            border: 2px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .modal-icon { font-size: 3rem; margin-bottom: 10px; }
+
+        .reg-id-box {
+            background: var(--bg-dark);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px dashed var(--accent-green);
+        }
+
+        .reg-id-box h3 {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            font-family: 'Teko', sans-serif;
+        }
+
+        .take-screenshot-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .spinner-box {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--border-color);
+            border-top: 5px solid var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px auto;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Hero Section -->
+    <header class="hero-section">
+        <div class="container hero-container">
+            <div class="badge-seats">⚡ LIMITED TO 70 PLAYERS ONLY</div>
+            <div class="logo-wrapper">
+                <img src="images/tournament-logo.png" alt="O.P.L Season 1 Logo" class="tournament-logo" onerror="this.src='https://via.placeholder.com/110x110/0a192f/ffb703?text=OPL+LOGO'">
+            </div>
+            <h1 class="tournament-title">O.P.L SEASON 1</h1>
+            <p class="tournament-subtitle">PLAYERS REGISTRATION PORTAL</p>
+            
+            <div class="quick-info-grid">
+                <div class="info-card">
+                    <span class="info-label">MATCH START DATE</span>
+                    <span class="info-value">04/10/2026</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">VENUE</span>
+                    <span class="info-value">Kapil Kot Ground, Kera</span>
+                </div>
+                <div class="info-card highlight">
+                    <span class="info-label">ENTRY FEE</span>
+                    <span class="info-value">₹400</span>
+                </div>
+            </div>
+
+            <a href="#registration-section" class="btn-primary cta-btn">REGISTER NOW</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Tournament Overview & Rules -->
+        <section class="section-card">
+            <h2 class="section-title">TOURNAMENT OVERVIEW</h2>
+            <div class="overview-grid">
+                <div class="overview-item"><strong>Format:</strong> 6-Over Tennis Ball</div>
+                <div class="overview-item"><strong>Last Date:</strong> 24/09/2026</div>
+                <div class="overview-item"><strong>Organizers:</strong> Naeem & Jidan</div>
+                <div class="overview-item"><strong>Contact:</strong> NAEEM (9328619823) | JIDAN (7874135635)</div>
+            </div>
+
+            <h3 class="rules-title">RULES & GUIDELINES</h3>
+            <ul class="rules-list">
+                <li>✅ આ ટુર્નામેન્ટમાં તમામ ટીમોને T-Shirt આપવામાં આવશે.</li>
+                <li>✅ આ ટુર્નામેન્ટમાં Online Form ભરવાનું રહેશે.</li>
+                <li>✅ Form ભરતી વખતે Entry Fee જમા કરાવવાની રહેશે.</li>
+                <li>✅ દરેક ટીમને 3 League Matches રમાડવામાં આવશે.</li>
+                <li>✅ ટુર્નામેન્ટ 3 રવિવાર દરમિયાન રમાડવામાં આવશે.</li>
+            </ul>
+
+            <div class="dev-credit">
+                Web Developer: <span>Mohammad Anish Notiyar</span>
+            </div>
+        </section>
+
+        <!-- Registration Form Section -->
+        <section id="registration-section" class="section-card form-wrapper">
+            <h2 class="section-title">PLAYER REGISTRATION FORM</h2>
+            <div id="registration-closed-msg" class="alert-danger hidden">
+                ⚠️ REGISTRATION CLOSED! Maximum limit of 70 players reached.
+            </div>
+
+            <form id="registration-form">
+                
+                <!-- Section 3: Personal Details -->
+                <div class="form-block">
+                    <h3 class="block-title">1. Personal Details</h3>
+                    
+                    <div class="input-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" required placeholder="Enter full name">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fatherName">Father's Name *</label>
+                        <input type="text" id="fatherName" required placeholder="Enter father's name">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="dob">Date of Birth *</label>
+                            <input type="date" id="dob" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="age">Age (Auto)</label>
+                            <input type="number" id="age" readonly placeholder="Auto">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="mobile">Mobile Number *</label>
+                            <input type="tel" id="mobile" pattern="[0-9]{10}" required placeholder="10 digit number">
+                        </div>
+                        <div class="input-group">
+                            <label for="tshirtSize">T-Shirt Size *</label>
+                            <select id="tshirtSize" required>
+                                <option value="">Select Size</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="city">Village / City *</label>
+                        <input type="text" id="city" required placeholder="Enter village or city name">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="playerPhoto">Player Photo *</label>
+                        <input type="file" id="playerPhoto" accept="image/*" required>
+                        <div class="preview-container hidden" id="photoPreviewBox">
+                            <img id="photoPreview" src="#" alt="Photo Preview">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Cricket Details -->
+                <div class="form-block">
+                    <h3 class="block-title">2. Cricket Details</h3>
+                    
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="playingRole">Playing Role *</label>
+                            <select id="playingRole" required>
+                                <option value="">Select Role</option>
+                                <option value="Batsman">Batsman</option>
+                                <option value="Bowler">Bowler</option>
+                                <option value="All-Rounder">All-Rounder</option>
+                                <option value="Wicket Keeper">Wicket Keeper</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="battingStyle">Batting Style *</label>
+                            <select id="battingStyle" required>
+                                <option value="">Select Style</option>
+                                <option value="Right Hand">Right Hand</option>
+                                <option value="Left Hand">Left Hand</option>
+                                <option value="Doesn't Bat">Doesn't Bat</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="bowlingStyle">Bowling Style *</label>
+                            <select id="bowlingStyle" required>
+                                <option value="">Select Style</option>
+                                <option value="Right Arm Fast">Right Arm Fast</option>
+                                <option value="Right Arm Medium">Right Arm Medium</option>
+                                <option value="Right Arm Spin">Right Arm Spin</option>
+                                <option value="Left Arm Fast">Left Arm Fast</option>
+                                <option value="Left Arm Medium">Left Arm Medium</option>
+                                <option value="Left Arm Spin">Left Arm Spin</option>
+                                <option value="Doesn't Bowl">Doesn't Bowl</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="jerseyNumber">Preferred Jersey No. *</label>
+                            <input type="number" id="jerseyNumber" required min="1" max="999" placeholder="e.g. 07">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Payment & Verification -->
+                <div class="form-block">
+                    <h3 class="block-title">3. Entry Fee & Payment Verification</h3>
+                    
+                    <div class="qr-container">
+                        <img src="images/payment-qr.png" alt="PhonePe QR Code" id="qrCodeImg" onerror="this.src='https://via.placeholder.com/180x180/070d19/ffb703?text=SCAN+PHONEPE+QR'">
+                        <p class="upi-id">Account Name: <span>MAHMAD RIYAJ MAHMAD RAFIQ SAMA</span></p>
+                        <a href="images/payment-qr.png" download="OPL-Season-1-QR.png" class="btn-secondary">Download QR Code</a>
+                        <p class="gujarati-instruction">પેમેન્ટ કર્યા પછી પેમેન્ટનો સ્ક્રીનશોટ નીચે આપેલા બોક્સમાં અપલોડ કરો.</p>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Paid Entry Fee (₹400) *</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="feePaid" value="Yes" required checked> Yes</label>
+                                <label><input type="radio" name="feePaid" value="No"> No</label>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="paymentMethod">Payment Method *</label>
+                            <select id="paymentMethod" required>
+                                <option value="">Select App</option>
+                                <option value="PhonePe">PhonePe</option>
+                                <option value="GPay">GPay</option>
+                                <option value="Paytm">Paytm</option>
+                                <option value="Other UPI">Other UPI</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="paymentDate">Payment Date *</label>
+                        <input type="date" id="paymentDate" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="paymentScreenshot">Payment Screenshot *</label>
+                        <input type="file" id="paymentScreenshot" accept="image/*" required>
+                        <div class="preview-container hidden" id="screenshotPreviewBox">
+                            <img id="screenshotPreview" src="#" alt="Screenshot Preview">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-primary submit-btn">
+                    SUBMIT PLAYER REGISTRATION
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-icon">✅</div>
+            <h2>REGISTRATION SUCCESSFUL!</h2>
+            <p>Your registration for O.P.L SEASON 1 has been recorded.</p>
+            <div class="reg-id-box">
+                <span>YOUR REGISTRATION ID:</span>
+                <h3 id="generatedRegId">OPL-001</h3>
+            </div>
+            <p class="take-screenshot-note">📸 Please take a screenshot of this confirmation screen for future reference.</p>
+            <button onclick="window.location.reload();" class="btn-primary">Done</button>
+        </div>
+    </div>
+
+    <!-- Spinner Modal -->
+    <div id="loadingOverlay" class="modal-overlay hidden">
+        <div class="spinner-box">
+            <div class="spinner"></div>
+            <p>Submitting Registration... ⏳</p>
+            <small>Please wait, saving data to server...</small>
+        </div>
+    </div>
+
+    <script>
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYdVy9Xn-SLdRLuD62-am0W4GXB4SZIkQXGSGauiA8nZEy2n8CSN8MvktPSW95W5BF3Q/exec";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Set default payment date to today
+            document.getElementById("paymentDate").valueAsDate = new Date();
+
+            // Auto calculate Age from DOB
+            const dobInput = document.getElementById("dob");
+            dobInput.addEventListener("change", () => {
+                const dob = new Date(dobInput.value);
+                if (!isNaN(dob)) {
+                    const ageDiff = Date.now() - dob.getTime();
+                    const ageDate = new Date(ageDiff);
+                    const calculatedAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+                    document.getElementById("age").value = calculatedAge;
+                }
+            });
+
+            // Image previews
+            setupImagePreview("playerPhoto", "photoPreview", "photoPreviewBox");
+            setupImagePreview("paymentScreenshot", "screenshotPreview", "screenshotPreviewBox");
+
+            // Form submission
+            const form = document.getElementById("registration-form");
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                // Show loading spinner
+                document.getElementById("loadingOverlay").classList.remove("hidden");
+                document.getElementById("submitBtn").disabled = true;
+
+                try {
+                    const playerPhotoBase64 = await fileToBase64(document.getElementById("playerPhoto").files[0]);
+                    const screenshotBase64 = await fileToBase64(document.getElementById("paymentScreenshot").files[0]);
+
+                    const payload = {
+                        fullName: document.getElementById("fullName").value,
+                        fatherName: document.getElementById("fatherName").value,
+                        dob: document.getElementById("dob").value,
+                        age: document.getElementById("age").value,
+                        mobile: document.getElementById("mobile").value,
+                        tshirtSize: document.getElementById("tshirtSize").value,
+                        city: document.getElementById("city").value,
+                        playingRole: document.getElementById("playingRole").value,
+                        battingStyle: document.getElementById("battingStyle").value,
+                        bowlingStyle: document.getElementById("bowlingStyle").value,
+                        jerseyNumber: document.getElementById("jerseyNumber").value,
+                        feePaid: document.querySelector('input[name="feePaid"]:checked').value,
+                        paymentMethod: document.getElementById("paymentMethod").value,
+                        paymentDate: document.getElementById("paymentDate").value,
+                        playerPhoto: playerPhotoBase64,
+                        paymentScreenshot: screenshotBase64
+                    };
+
+                    const response = await fetch(APPS_SCRIPT_URL, {
+                        method: "POST",
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    document.getElementById("loadingOverlay").classList.add("hidden");
+
+                    if (result.status === "SUCCESS") {
+                        document.getElementById("generatedRegId").innerText = result.regId;
+                        document.getElementById("successModal").classList.remove("hidden");
+                    } else if (result.status === "CLOSED") {
+                        alert("Registration Closed! Limit of 70 players reached.");
+                        document.getElementById("registration-closed-msg").classList.remove("hidden");
+                        form.classList.add("hidden");
+                    } else {
+                        alert("Error: " + result.message);
+                        document.getElementById("submitBtn").disabled = false;
+                    }
+
+                } catch (error) {
+                    console.error(error);
+                    document.getElementById("loadingOverlay").classList.add("hidden");
+                    alert("Submission failed! Check connection and try again.");
+                    document.getElementById("submitBtn").disabled = false;
+                }
+            });
+        });
+
+        function setupImagePreview(inputId, imgId, boxId) {
+            document.getElementById(inputId).addEventListener("change", (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        document.getElementById(imgId).src = event.target.result;
+                        document.getElementById(boxId).classList.remove("hidden");
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = (error) => reject(error);
+            });
+        }
+    </script>
+</body>
+</html>
